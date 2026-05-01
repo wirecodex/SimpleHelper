@@ -51,11 +51,11 @@ $names   = $arr->pluck($grouped['admin'], 'name');
 
 // Load from any GitHub user's SimpleHelperVault
 $validator = helper('johndoe')->load('EmailValidator');
-$barcode   = helper('pixrael')->load('BarcodeGenerator');
+$barcode   = helper('janedoe')->load('BarcodeGenerator');
 
 // Pin to a specific branch or version tag
 $helper = helper('johndoe@dev')->load('EmailValidator');
-$helper = helper('pixrael@v2.0')->load('BarcodeGenerator');
+$helper = helper('janedoe@v2.0')->load('BarcodeGenerator');
 ```
 
 ## API
@@ -111,8 +111,8 @@ Pre-download a helper without using it immediately. Useful for seeding a local c
 
 ```php
 helper()->install('ArrayTools');
-helper('pixrael')->install('GeoUtils');
-helper('pixrael@v2.0')->install('GeoUtils');
+helper('janedoe')->install('GeoUtils');
+helper('janedoe@v2.0')->install('GeoUtils');
 ```
 
 ### `update(string $name): bool`
@@ -121,7 +121,7 @@ Re-check GitHub for changes. Uses ETag — returns `true` immediately if nothing
 
 ```php
 helper()->update('ArrayTools');
-helper('pixrael')->update('GeoUtils');
+helper('janedoe')->update('GeoUtils');
 ```
 
 ### `remove(string $name): bool`
@@ -130,7 +130,7 @@ Delete a helper from the local vault. The helper will be re-downloaded from GitH
 
 ```php
 helper()->remove('OldHelper');
-helper('pixrael')->remove('GeoUtils');
+helper('janedoe')->remove('GeoUtils');
 ```
 
 ### `installed(): array`
@@ -139,7 +139,7 @@ List helper names currently in this vault.
 
 ```php
 $names = helper()->installed();         // ['ArrayTools', ...]
-$names = helper('pixrael')->installed();
+$names = helper('janedoe')->installed();
 ```
 
 ### `info(string $name): ?object`
@@ -160,7 +160,7 @@ Find installed helpers matching a `key=value` selector.
 
 ```php
 $helpers = helper()->find("tags=array");
-$helpers = helper()->find("author=israel");
+$helpers = helper()->find("author=jane");
 $helpers = helper()->find("tags=utility, vault=defaults");
 
 foreach ($helpers as $info) {
@@ -323,7 +323,7 @@ $helper = helper('local')->load('MyHelper');
     │       ├── ArrayTools.php
     │       ├── .info.json          ← Metadata cache for find()/search()
     │       └── .meta.json          ← ETag storage for update()
-    ├── pixrael/                    ← pixrael/SimpleHelperVault cache
+    ├── janedoe/                    ← janedoe/SimpleHelperVault cache
     │   └── BarcodeGenerator/
     │       ├── BarcodeGenerator.php
     │       └── fonts/
@@ -385,11 +385,11 @@ $grouped = $groupBy($flat, 'category');
 ```php
 // Pre-download helpers during deployment
 helper()->install('ArrayTools');
-helper('pixrael')->install('GeoUtils');
+helper('janedoe')->install('GeoUtils');
 helper('johndoe')->install('EmailValidator');
 
 // Alternatively, clone repos directly to the vaults directory
-// git clone https://github.com/pixrael/SimpleHelperVault.git site/assets/SimpleWire/vaults/pixrael
+// git clone https://github.com/janedoe/SimpleHelperVault.git site/assets/SimpleWire/vaults/janedoe
 ```
 
 ## Troubleshooting
